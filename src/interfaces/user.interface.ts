@@ -3,5 +3,5 @@ export interface User {
   username: string;
   email: string;
   password?: string;
-  diaryIds: string[] | null;
+  journalIds: string[] | null;
 }

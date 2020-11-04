@@ -1,6 +1,6 @@
 import { Server, Model, Factory, Response, belongsTo, hasMany } from 'miragejs';
 import user from './routes/user';
-import * as diary from './routes/diary';
+import * as journal from './routes/journal';
 
 export const handleErrors = (error: any, message = 'An error ocurred') => {
   console.error('Error: ', error);
@@ -18,14 +18,14 @@ export const setupServer = (env?: string): Server => {
 
     models: {
       entry: Model.extend({
-        diary: belongsTo(),
+        journal: belongsTo(),
       }),
-      diary: Model.extend({
+      journal: Model.extend({
         entry: hasMany(),
         user: belongsTo(),
       }),
       user: Model.extend({
-        diary: hasMany(),
+        journal: hasMany(),
       }),
     },
 
@@ -44,17 +44,17 @@ export const setupServer = (env?: string): Server => {
     routes(): void {
       this.urlPrefix = 'https://fuerza.test';
 
-      this.get('/diaries/entries/:id', diary.getEntries);
-      this.get('/diaries/:id', diary.getDiaries);
+      this.get('/journal/entries/:id', journal.getEntries);
+      this.get('/journal/:id', journal.getJournal);
 
       this.post('/auth/login', user.login);
       this.post('/auth/signup', user.signup);
 
-      this.post('/diaries/', diary.create);
-      this.post('/diaries/entry/:id', diary.addEntry);
+      this.post('/journal/', journal.create);
+      this.post('/journal/entry/:id', journal.addEntry);
 
-      this.put('/diaries/entry/:id', diary.updateEntry);
-      this.put('/diaries/:id', diary.updateDiary);
+      this.put('/journal/entry/:id', journal.updateEntry);
+      this.put('/journal/:id', journal.updateJournal);
     },
   });
 };
