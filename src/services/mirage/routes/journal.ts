@@ -10,7 +10,7 @@ export const create = (
   req: Request
 ): { user: User; journal: Journal } | Response => {
   try {
-    const { title, type, userId } = JSON.parse(req.requestBody) as Partial<
+    const { title, userId } = JSON.parse(req.requestBody) as Partial<
       Journal
     >;
     const exUser = schema.users.findBy({ id: userId });
@@ -20,7 +20,7 @@ export const create = (
     const now = dayjs().format();
     const journal = exUser.createJournal({
       title,
-      type,
+      type: 'public',
       createdAt: now,
       updatedAt: now,
     });
@@ -62,7 +62,7 @@ export const addEntry = (
   }
 };
 
-export const getJournal = (schema: any, req: Request): Journal[] | Response => {
+export const getJournals = (schema: any, req: Request): Journal[] | Response => {
   try {
     const user = schema.users.find(req.params.id);
     return user.journal as Journal[];

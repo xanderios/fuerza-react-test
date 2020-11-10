@@ -44,17 +44,17 @@ export const setupServer = (env?: string): Server => {
     routes(): void {
       this.urlPrefix = 'https://fuerza.test';
 
-      this.get('/journal/entries/:id', journal.getEntries);
-      this.get('/journal/:id', journal.getJournal);
+      this.get('/journals/entries/:id', journal.getEntries);
+      this.get('/journals/:id', journal.getJournals);
 
       this.post('/auth/login', user.login);
       this.post('/auth/signup', user.signup);
 
-      this.post('/journal/', journal.create);
-      this.post('/journal/entry/:id', journal.addEntry);
+      this.post('/journals/', journal.create);
+      this.post('/journals/entry/:id', journal.addEntry);
 
-      this.put('/journal/entry/:id', journal.updateEntry);
-      this.put('/journal/:id', journal.updateJournal);
+      this.put('/journals/entry/:id', journal.updateEntry);
+      this.put('/journals/:id', journal.updateJournal);
     },
   });
 };
