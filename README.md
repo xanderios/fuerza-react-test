@@ -23,7 +23,9 @@ The user of this react application should be able to create an account, login an
 3. Create Journal.
 4. Create notes.
 5. List Journals.
-6. List notes.
+6. Click on a Journal.
+7. List notes.
+8. List the note content.
 
 ## API Usage
 
@@ -33,7 +35,6 @@ API can be launched using npm start. You will need to run npm install once you s
 | -------------------- | --------------------------- |
 | /auth/login          | Login                       |
 | /auth/signup         | Sign up                     |
-| /journal/entries/:id | List all journals from user |
 | /journal/entries/:id | List all journals from user |
 
 ---
