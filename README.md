@@ -27,6 +27,10 @@ The user of this react application should be able to create an account, login an
 7. List notes.
 8. List the note content.
 
+
+## Layout
+[Figma Link](https://www.figma.com/file/xFIfu4rDvvxZUpwZUIh2EM/Teste?node-id=0%3A1)
+
 ## API Usage
 
 API can be launched using npm start. You will need to run npm install once you starting working on the project to install dependencies.
