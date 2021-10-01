@@ -1,0 +1,20 @@
+.button {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  padding: 12px;
+  width: 160px;
+  font-size: 14px;
+  border-radius: 99px;
+  font-size: 14px;
+}
+
+.buttonFill {
+  background: var(--color-primary-500);
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.buttonStroke {
+  border: 1px solid var(--color-primary-500);
+}

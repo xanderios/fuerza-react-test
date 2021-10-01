@@ -1,0 +1,15 @@
+.background {
+  height: 100%;
+  background-image: url('../../assets/logo-icon.svg');
+  background-repeat: no-repeat;
+  background-size: 40vh;
+  background-position: left center;
+  background-color: var(--color-primary-100);
+}
+
+.container {
+  height: 100%;
+  padding-right: 22px;
+  padding-left: 22px;
+  margin: auto;
+}
