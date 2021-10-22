@@ -1,18 +1,32 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
+import { AuthProvider } from './contexts/AuthContext';
+
+import ProtectedRoute from './components/ProtectedRoute';
+
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import JournalList from './pages/JournalList';
 
 export default function App() {
   return (
-    <Switch>
-      <Route path="/signup">
-        <SignUp />
-      </Route>
+    <AuthProvider>
+      <Switch>
+        <Route exact path="/signup">
+          <SignUp />
+        </Route>
 
-      <Route path="/">
-        <Login />
-      </Route>
-    </Switch>
+        <Route path="/journals">
+          <ProtectedRoute>
+            <JournalList />
+          </ProtectedRoute>
+        </Route>
+
+        <Route exact path="/login">
+          <Login />
+        </Route>
+      </Switch>
+    </AuthProvider>
   );
 }

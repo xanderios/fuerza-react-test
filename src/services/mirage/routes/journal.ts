@@ -1,18 +1,16 @@
 import { Response, Request } from 'miragejs';
 import { handleErrors } from '../server';
-import { Journal } from '../../../interfaces/journal.interface';
-import { Entry } from '../../../interfaces/entry.interface';
+import { Journal } from '../../../types/journal';
+import { Entry } from '../../../types/entry';
 import dayjs from 'dayjs';
-import { User } from '../../../interfaces/user.interface';
+import { User } from '../../../types/user';
 
 export const create = (
   schema: any,
   req: Request
 ): { user: User; journal: Journal } | Response => {
   try {
-    const { title, userId } = JSON.parse(req.requestBody) as Partial<
-      Journal
-    >;
+    const { title, userId } = JSON.parse(req.requestBody) as Partial<Journal>;
     const exUser = schema.users.findBy({ id: userId });
     if (!exUser) {
       return handleErrors(null, 'No such user exists.');
@@ -62,7 +60,10 @@ export const addEntry = (
   }
 };
 
-export const getJournals = (schema: any, req: Request): Journal[] | Response => {
+export const getJournals = (
+  schema: any,
+  req: Request
+): Journal[] | Response => {
   try {
     const user = schema.users.find(req.params.id);
     return user.journal as Journal[];
@@ -83,7 +84,10 @@ export const getEntries = (
   }
 };
 
-export const updateJournal = (schema: any, req: Request): Journal | Response => {
+export const updateJournal = (
+  schema: any,
+  req: Request
+): Journal | Response => {
   try {
     const journal = schema.journals.find(req.params.id);
     const data = JSON.parse(req.requestBody) as Partial<Journal>;

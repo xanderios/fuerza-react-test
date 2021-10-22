@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import api from '../services/api';
-import { Journal } from '../interfaces/journal.interface';
+import { Journal } from '../types/journal';
 import { AxiosResponse } from 'axios';
 
 interface Props {

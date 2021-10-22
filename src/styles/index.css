@@ -1,42 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@700&family=Montserrat:wght@400;600&display=swap');
 
-:root {
-  --color-white: #ffffff;
-  --color-black: #020202;
-  --color-gray-400: #9da4a6;
-
-  --color-primary-100: #f8e5d6;
-  --color-primary-500: #834825;
-
-  --color-secondary-300: #b8e5e3;
-  --color-secondary-500: #5091d6;
-  --color-secondary-700: #3b4e8d;
-
-  --sans-serif: 'Montserrat', sans-serif;
-  --serif: 'Abhaya Libre', serif;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import './base/index.css';
+@import './components/index.css';
+@import './pages/index.css';
 
 html,
 body,
 #root {
   height: 100%;
-}
-
-body {
-  font-family: var(--sans-serif);
-  font-weight: 400;
-}
-
-button,
-input,
-select,
-textarea {
-  border: none;
-  outline: none;
 }

@@ -1,5 +1,4 @@
 import React, { FormEvent, ReactElement, ReactNode } from 'react';
-import styles from '../styles/components/Button.module.css';
 
 interface Props {
   type?: 'button' | 'reset' | 'submit';
@@ -13,9 +12,9 @@ export default function Button({
   onClick,
 }: Props): ReactElement {
   return (
-    <div className={styles.buttonWrapper}>
+    <div className="btn">
       <button
-        className={`${styles.button} ${styles.buttonFill}`}
+        className="btn btn--fill"
         onClick={onClick}
         type={type || 'button'}
       >

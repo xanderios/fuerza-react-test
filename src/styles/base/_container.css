@@ -5,6 +5,7 @@
   background-size: 40vh;
   background-position: left center;
   background-color: var(--color-primary-100);
+  overflow: auto;
 }
 
 .container {
@@ -12,4 +13,6 @@
   padding-right: 22px;
   padding-left: 22px;
   margin: auto;
+  max-width: 375px;
+  width: 100%;
 }

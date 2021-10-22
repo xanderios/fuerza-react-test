@@ -1,49 +1,47 @@
-.authPageWrapper {
+.auth-page {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding-top: 48px;
 }
 
 .logo {
   width: 205px;
 }
 
-.authPageWrapper > div {
+.auth-page > div {
   margin-top: 78px;
 }
 
-.authPageWrapper .title {
+.auth-page .title {
   color: var(--color-primary-500);
   font-size: 32px;
 }
 
-.authPageWrapper .header {
+.auth-page .header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
 }
 
-.authPageWrapper .header a {
+.auth-page .header a {
   font-size: 12px;
-  font-weight: 600;
-  color: var(--color-primary-500);
 }
 
-.authPageWrapper form {
+.auth-page form {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.authPageWrapper .button {
+.auth-page .actions {
   margin-top: 60px;
   margin-right: auto;
   margin-left: auto;
 }
 
-.authPageWrapper .forgotPassword {
+.auth-page .forgot-password {
   color: var(--color-primary-500);
   font-size: 12px;
   text-align: end;

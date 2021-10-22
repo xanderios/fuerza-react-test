@@ -1,0 +1,20 @@
+.journals-page {
+}
+
+.journals-page .journals-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.journals-page .journals-empty .person {
+  max-width: 320px;
+  width: 100%;
+}
+
+.journals-page a {
+  display: block;
+  text-align: center;
+  margin: 80px auto 0;
+}

@@ -1,26 +1,22 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { AuthFormData, useAuth } from '../contexts/AuthContext';
+
+import Logo from '../components/Logo';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import api from '../services/api';
 
-import styles from '../styles/pages/Auth.module.css';
-import logo from '../assets/logo.svg';
+export default function Login(): ReactElement {
+  const [formData, setFormData] = useState<AuthFormData>({
+    username: '',
+    password: '',
+  });
+  const { signIn } = useAuth();
 
-interface Props {}
-
-export default function Login({}: Props): ReactElement {
-  const [formData, setFormData] = useState({ username: '', password: '' });
-
-  function signIn() {
-    const { username, password } = formData;
-    if (!username || username.length <= 0) return;
-    if (!password || password.length <= 0) return;
-
-    api.post('/auth/login', {
-      username: username,
-      password: password,
-    });
+  function submitHandler(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    signIn(formData);
   }
 
   function handleUsernameInput(e: FormEvent<HTMLInputElement>) {
@@ -32,13 +28,13 @@ export default function Login({}: Props): ReactElement {
   }
 
   return (
-    <div className={styles.authPageWrapper}>
-      <img className={styles.logo} src={logo} alt="Nocturnal" />
-      <div className={styles.header}>
-        <p className={styles.title}>Sign in</p>
+    <div className="auth-page">
+      <Logo />
+      <div className="header">
+        <p className="title">Sign in</p>
         <Link to="/signup">Sign Up</Link>
       </div>
-      <form onSubmit={signIn}>
+      <form onSubmit={submitHandler}>
         <Input
           type="text"
           value={formData.username}
@@ -52,12 +48,12 @@ export default function Login({}: Props): ReactElement {
           placeholder="Your password"
         />
         <a
-          className={styles.forgotPassword}
-          href="https://cdn.dribbble.com/users/380990/screenshots/9991737/media/428678431d8be8096bdb9a3c3c7c7dfa.mp4"
+          className="forgot-password"
+          href="https://pt.wikipedia.org/wiki/HTTP_404"
         >
           Forgot Password?
         </a>
-        <div className={styles.button}>
+        <div className="actions">
           <Button type="submit">Log In</Button>
         </div>
       </form>

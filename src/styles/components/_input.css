@@ -1,4 +1,4 @@
-.inputWrapper {
+.input {
   position: relative;
   height: 40px;
   width: 100%;
@@ -7,11 +7,11 @@
   border-radius: 4px;
 }
 
-.inputWrapper input {
+.input input {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
+  bottom: 3px;
   left: 0;
   padding-left: 7px;
   padding-top: 20px;
@@ -19,7 +19,7 @@
   width: 100%;
 }
 
-.inputWrapper .placeholder {
+.input .placeholder {
   position: absolute;
   top: 50%;
   left: 12px;
@@ -31,13 +31,13 @@
   pointer-events: none;
 }
 
-.inputWrapper:focus-within {
+.input:focus-within {
   filter: drop-shadow(0px 0px 4px #b8e5e3) drop-shadow(0px 0px 2px #b8e5e3);
 }
 
-.inputWrapperNotEmpty .placeholder,
-.inputWrapper:focus-within .placeholder {
-  top: 7px;
+.input--not-empty .placeholder,
+.input:focus-within .placeholder {
+  top: 6px;
   left: 7px;
   font-size: 9px;
   font-weight: 400;

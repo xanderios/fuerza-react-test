@@ -1,0 +1,12 @@
+.default-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding-top: 48px;
+}
+
+.default-page .logo {
+  width: 100%;
+  max-width: 152px;
+}
