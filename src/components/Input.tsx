@@ -18,7 +18,11 @@ export default function Input({
   }
 
   return (
-    <div className={`input ${!isEmpty() ? 'input--not-empty' : ''}`}>
+    <div
+      className={`input_animated ${
+        !isEmpty() ? 'input_animated--not-empty' : ''
+      }`}
+    >
       {placeholder && <span className="placeholder">{placeholder}</span>}
       <input type={type || 'text'} value={value} onChange={onChange} />
     </div>

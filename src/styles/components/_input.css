@@ -1,25 +1,37 @@
-.input {
-  position: relative;
-  height: 40px;
+/* Simple Input */
+.input input {
   width: 100%;
+  padding: 12px 12px;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(157, 164, 166, 0.07);
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--color-primary-500);
+}
+
+/* Input with animated placeholder */
+.input_animated {
+  position: relative;
+  width: 100%;
+  height: 40px;
   background: var(--color-white);
   border: 1px solid var(--color-primary-100);
   border-radius: 4px;
 }
 
-.input input {
+.input_animated input {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 3px;
   left: 0;
-  padding-left: 7px;
-  padding-top: 20px;
-  background: transparent;
   width: 100%;
+  padding-top: 20px;
+  padding-left: 7px;
+  background: transparent;
 }
 
-.input .placeholder {
+.input_animated .placeholder {
   position: absolute;
   top: 50%;
   left: 12px;
@@ -31,12 +43,12 @@
   pointer-events: none;
 }
 
-.input:focus-within {
+.input_animated:focus-within {
   filter: drop-shadow(0px 0px 4px #b8e5e3) drop-shadow(0px 0px 2px #b8e5e3);
 }
 
-.input--not-empty .placeholder,
-.input:focus-within .placeholder {
+.input_animated--not-empty .placeholder,
+.input_animated:focus-within .placeholder {
   top: 6px;
   left: 7px;
   font-size: 9px;

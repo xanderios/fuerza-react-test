@@ -8,6 +8,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import JournalList from './pages/JournalList';
+import CreateJournal from './pages/CreateJournal';
+import Journal from './pages/Journal';
 
 export default function App() {
   return (
@@ -25,6 +27,14 @@ export default function App() {
 
         <Route exact path="/login">
           <Login />
+        </Route>
+
+        <Route exact path="/create-journal">
+          <CreateJournal />
+        </Route>
+
+        <Route exact path="/create-journal">
+          <Journal />
         </Route>
       </Switch>
     </AuthProvider>

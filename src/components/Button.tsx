@@ -12,14 +12,8 @@ export default function Button({
   onClick,
 }: Props): ReactElement {
   return (
-    <div className="btn">
-      <button
-        className="btn btn--fill"
-        onClick={onClick}
-        type={type || 'button'}
-      >
-        {children}
-      </button>
-    </div>
+    <button className="btn btn--fill" onClick={onClick} type={type || 'button'}>
+      {children}
+    </button>
   );
 }
