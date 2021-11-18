@@ -18,16 +18,12 @@ import { JournalsProvider } from './contexts/JournalsContext';
 export default function App() {
   return (
     <AuthProvider>
-      <Switch>
-        <Route exact path="/login">
-          <Login />
-        </Route>
+      <JournalsProvider>
+        <Switch>
+          <Route exact path="/signup">
+            <SignUp />
+          </Route>
 
-        <Route exact path="/signup">
-          <SignUp />
-        </Route>
-
-        <JournalsProvider>
           <Route exact path="/journals">
             <ProtectedRoute>
               <JournalList />
@@ -57,17 +53,12 @@ export default function App() {
               <JournalEntriesPage />
             </ProtectedRoute>
           </Route>
-        </JournalsProvider>
 
-        <Route>
-          <div className="default-page">
-            <p>Page not found</p>
-            <Link to="/login">
-              <Button>Login</Button>
-            </Link>
-          </div>
-        </Route>
-      </Switch>
+          <Route path="/">
+            <Login />
+          </Route>
+        </Switch>
+      </JournalsProvider>
     </AuthProvider>
   );
 }
