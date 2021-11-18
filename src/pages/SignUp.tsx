@@ -47,7 +47,7 @@ export default function SignUp(): ReactElement {
             placeholder="Define a username"
           />
           <Input
-            type="text"
+            type="password"
             value={formData.password as string}
             onChange={handlePasswordInput}
             placeholder="Set your password"

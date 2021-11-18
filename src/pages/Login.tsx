@@ -42,7 +42,7 @@ export default function Login(): ReactElement {
           placeholder="Your username"
         />
         <Input
-          type="text"
+          type="password"
           value={formData.password as string}
           onChange={handlePasswordInput}
           placeholder="Your password"
