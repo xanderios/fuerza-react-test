@@ -41,6 +41,10 @@
   margin-left: auto;
 }
 
+.auth-page .actions .btn {
+  cursor: pointer;
+}
+
 .auth-page .forgot-password {
   color: var(--color-primary-500);
   font-size: 12px;

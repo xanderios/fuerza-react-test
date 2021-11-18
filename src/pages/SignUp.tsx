@@ -10,8 +10,8 @@ export default function SignUp(): ReactElement {
   const { signUp } = useAuth();
   const [formData, setFormData] = useState<AuthFormData>({
     username: '',
-    email: '',
     password: '',
+    email: '',
   });
 
   function handleUsernameInput(e: FormEvent<HTMLInputElement>) {

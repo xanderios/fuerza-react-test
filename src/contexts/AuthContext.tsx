@@ -73,19 +73,48 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   async function signUp(formData: AuthFormData) {
-    if (formData.username.length <= 0) return;
-    if (formData.username.length >= 20) return;
+    console.log(formData);
+    if (formData.username == '') {
+      alert('Username is required');
+      return;
+    }
+    if (formData.password == '') {
+      alert('Password is required');
+      return;
+    }
+    if (formData.username.length < 2) {
+      alert('Username is required and must be at least 2 characters long');
+      return;
+    }
+    if (formData.username.length >= 20) {
+      alert('Username must be shorter than 21 characters');
+      return;
+    }
     if (
       formData.email &&
-      formData.email.length > 0 &&
-      formData.email.length < 20
-    )
+      formData.email.length > 8 &&
+      formData.email.length < 40
+    ) {
+      alert('Email must be shorter than 40 characters');
       return;
-    if (formData.password && formData.password.length <= 0) return;
+    }
+    if (formData.password.length < 4) {
+      alert('Password must be at least 4 characters long');
+      return;
+    }
+    if (formData.password.length > 20) {
+      alert('Password must be shorter than 4 characters long');
+      return;
+    }
 
-    await api.post('/auth/signup', { formData }).then((res) => {
-      history.push('/login');
-    });
+    await api
+      .post('/auth/signup', formData)
+      .then(() => {
+        history.push('/login');
+      })
+      .catch((err) => {
+        return err;
+      });
   }
 
   async function signIn(formData: AuthFormData) {
