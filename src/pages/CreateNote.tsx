@@ -1,13 +1,11 @@
 import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import Button from '../components/Button';
 import Logo from '../components/Logo';
 import SimpleInput from '../components/SimpleInput';
 import { IconArrowLeft } from '../components/icons/ArrowLeft';
-import { useAuth } from '../contexts/AuthContext';
-import { IJournal } from '../types/journal';
 import { useJournals } from '../contexts/JournalsContext';
 
 interface IQuery {
@@ -38,6 +36,7 @@ export default function CreateNote(): ReactElement {
 
   useEffect(() => {
     fetchJournal(journalId);
+    // eslint-disable-next-line
   }, []);
 
   return (

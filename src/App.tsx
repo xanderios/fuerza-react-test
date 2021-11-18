@@ -1,10 +1,9 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/AuthContext';
 
 import ProtectedRoute from './components/ProtectedRoute';
-import Button from './components/Button';
 
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';

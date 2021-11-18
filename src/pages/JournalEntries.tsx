@@ -1,29 +1,26 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import chill from '../assets/chill.png';
-import { IJournal } from '../types/journal';
-import { useAuth } from '../contexts/AuthContext';
 import Logo from '../components/Logo';
 import NoteCard from '../components/NoteCard';
 import { IconArrowLeft } from '../components/icons/ArrowLeft';
 import { useJournals } from '../contexts/JournalsContext';
 import { IEntry } from '../types/entry';
 
-interface Props {}
-
 interface IQuery {
   journalId: string;
 }
 
-export default function JournalEntries({}: Props): ReactElement {
+export default function JournalEntries(): ReactElement {
   const { journalId }: IQuery = useParams();
   const { journal, notes, fetchJournal, fetchNotes } = useJournals();
 
   useEffect(() => {
     fetchJournal(journalId);
     fetchNotes(journalId);
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -48,7 +45,6 @@ export default function JournalEntries({}: Props): ReactElement {
           <div className="note-list">
             {notes.map((note: IEntry) => (
               <NoteCard key={note.id} note={note} />
-              // <p key={note.id}>{note.content}</p>
             ))}
           </div>
         </div>

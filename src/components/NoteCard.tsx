@@ -1,6 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { useJournals } from '../contexts/JournalsContext';
+import React, { ReactElement } from 'react';
 
 import { IEntry } from '../types/entry';
 

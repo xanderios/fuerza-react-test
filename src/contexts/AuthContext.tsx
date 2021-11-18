@@ -73,12 +73,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   async function signUp(formData: AuthFormData) {
-    console.log(formData);
-    if (formData.username == '') {
+    if (formData.username === '') {
       alert('Username is required');
       return;
     }
-    if (formData.password == '') {
+    if (formData.password === '') {
       alert('Password is required');
       return;
     }
@@ -90,20 +89,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
       alert('Username must be shorter than 21 characters');
       return;
     }
+    if (formData.password.length < 3) {
+      alert('Password must be at least 3 characters long');
+      return;
+    }
+    if (formData.password.length > 20) {
+      alert('Password must be shorter than 4 characters long');
+      return;
+    }
     if (
       formData.email &&
       formData.email.length > 8 &&
       formData.email.length < 40
     ) {
       alert('Email must be shorter than 40 characters');
-      return;
-    }
-    if (formData.password.length < 4) {
-      alert('Password must be at least 4 characters long');
-      return;
-    }
-    if (formData.password.length > 20) {
-      alert('Password must be shorter than 4 characters long');
       return;
     }
 
@@ -118,16 +117,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function signIn(formData: AuthFormData) {
-    if (!formData.username || formData.username.length <= 0) return;
-    if (!formData.password || formData.password.length <= 0) return;
+    if (formData.username.length <= 0) {
+      alert('Username is required');
+      return;
+    }
+    if (formData.password.length <= 0) {
+      alert('Password is required');
+      return;
+    }
 
     setIsLoading(true);
     deleteCookies();
 
     try {
-      const response: SignInResponse = await api.post('/auth/login', {
-        formData,
-      });
+      const response: SignInResponse = await api.post('/auth/login', formData);
       const { token, user: responseUser } = response;
       setUser(responseUser);
       if (token) {
@@ -137,8 +140,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setIsLoading(false);
       history.push(`/journals`);
     } catch (err) {
-      console.log(err);
       setIsLoading(false);
+      alert('Invalid username or password, please try again');
+      return;
     }
   }
 

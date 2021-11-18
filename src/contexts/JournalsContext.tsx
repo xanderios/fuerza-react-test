@@ -1,5 +1,5 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import { IEntry } from '../types/entry';
 
 import { IJournal } from '../types/journal';
@@ -38,16 +38,27 @@ export function JournalsProvider({ children }: JournalsProviderProps) {
   }
 
   async function createJournal(journalTitle: string) {
+    if (journalTitle.length > 20) {
+      alert('Journal title must be 20 characters or shorter');
+      return;
+    }
+    if (journalTitle.length <= 0) {
+      alert('Journal title must be at least 1 character length');
+      return;
+    }
+
     await withSessionAPI()
       .post('/journals', {
         title: journalTitle,
         userId: user.id,
       })
-      .then((res) => {
+      .then(() => {
         history.push('/journals');
       })
       .catch((err) => {
+        alert('There was an error with your submission');
         console.log(err);
+        return;
       });
   }
 
@@ -70,6 +81,23 @@ export function JournalsProvider({ children }: JournalsProviderProps) {
   }
 
   async function createNote(journalId: string, title: string, content: string) {
+    if (title.length <= 0) {
+      alert('Note title must be at least 1 character length');
+      return;
+    }
+    if (title.length > 20) {
+      alert('Note title must have 20 characters or less');
+      return;
+    }
+    if (content.length <= 6) {
+      alert('Note content must be at least 7 character length');
+      return;
+    }
+    if (content.length > 200) {
+      alert('Note content must have 200 characters or less');
+      return;
+    }
+
     await withSessionAPI()
       .post(`/journals/entry/${journalId}`, {
         title,
@@ -79,7 +107,9 @@ export function JournalsProvider({ children }: JournalsProviderProps) {
         history.push(`/journals/entries/${journalId}`);
       })
       .catch((err) => {
+        alert('There was an error with your submission');
         console.log(err);
+        return;
       });
   }
 

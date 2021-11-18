@@ -1,10 +1,8 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
-import { useHistory } from 'react-router';
 
 import Button from '../components/Button';
 import Logo from '../components/Logo';
 import SimpleInput from '../components/SimpleInput';
-import { useAuth } from '../contexts/AuthContext';
 import { useJournals } from '../contexts/JournalsContext';
 
 export default function CreateJournal(): ReactElement {

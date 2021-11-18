@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import chill from '../assets/chill.png';
@@ -12,6 +12,7 @@ export default function Journals(): ReactElement {
 
   useEffect(() => {
     fetchJournals();
+    // eslint-disable-next-line
   }, []);
 
   return (
