@@ -3,34 +3,41 @@ import { Link } from 'react-router-dom';
 
 import chill from '../assets/chill.png';
 
-import { useAuth } from '../contexts/AuthContext';
-import { Journal } from '../types/journal';
 import Logo from '../components/Logo';
+import JournalCard from '../components/JournalCard';
+import { useJournals } from '../contexts/JournalsContext';
 
 export default function Journals(): ReactElement {
-  const { withSessionAPI, user } = useAuth();
-  const [journals, setJournals] = useState<Journal[] | null>(null);
+  const { journals, fetchJournals } = useJournals();
 
   useEffect(() => {
-    withSessionAPI()
-      .get(`/journals/entries${user?.id}`)
-      .then((res) => {
-        setJournals(res.data);
-      });
+    fetchJournals();
   }, []);
 
   return (
     <div className="journals-page default-page">
       {journals ? (
-        <div className="journal-list">
-          {journals.map((journal) => (
-            <p key={journal.id}>{journal.title}</p>
-          ))}
+        <div>
+          <div className="header">
+            <Logo />
+            <Link className="link" to="/create-journal">
+              <button className="btn btn--stroke">
+                <span className="text-xl">+</span> Add Journal
+              </button>
+            </Link>
+          </div>
+          <div className="journal-list">
+            {journals?.map((journal) => (
+              <Link key={journal.id} to={`/journals/entries/${journal.id}`}>
+                <JournalCard {...journal} />
+              </Link>
+            ))}
+          </div>
         </div>
       ) : (
         <div className="journals-empty">
           <Logo />
-          <div>
+          <div className="content">
             <img className="person" src={chill} alt="Peace" />
             <Link to="/create-journal">Create a Journal</Link>
           </div>

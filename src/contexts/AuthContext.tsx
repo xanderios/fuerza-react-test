@@ -10,7 +10,7 @@ import { useHistory } from 'react-router';
 import { AxiosInstance } from 'axios';
 
 import api from '../services/api';
-import { User } from '../types/user';
+import { IUser } from '../types/user';
 
 export type AuthFormData = {
   username: string;
@@ -20,7 +20,7 @@ export type AuthFormData = {
 
 export type SignInResponse = {
   token: string;
-  user: User;
+  user: IUser;
 };
 
 interface authContextData {
@@ -28,7 +28,7 @@ interface authContextData {
   isAuthenticated: boolean;
   signUp: (formData: AuthFormData) => void;
   signIn: (formData: AuthFormData) => void;
-  user: User | null;
+  user: IUser | null;
   signOut: () => void;
   withSessionAPI: () => AxiosInstance;
 }
@@ -43,7 +43,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Disable for Auth development
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -85,7 +85,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     await api.post('/auth/signup', { formData }).then((res) => {
       history.push('/login');
-      console.log(res);
     });
   }
 
@@ -107,7 +106,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         api.defaults.headers['Authorization'] = `Bearer ${token}`;
       }
       setIsLoading(false);
-      history.push(`/journal/entries/${responseUser.id}`);
+      history.push(`/journals`);
     } catch (err) {
       console.log(err);
       setIsLoading(false);
@@ -117,7 +116,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   function signOut() {
     deleteCookies();
     setIsAuthenticated(false);
-    history.push('/auth/login');
+    history.push('/login');
   }
 
   return (

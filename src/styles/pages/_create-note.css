@@ -1,0 +1,15 @@
+.create-note-page form {
+  margin-top: 60px;
+}
+
+.create-note-page textarea.input {
+  min-height: 100px;
+  height: 100%;
+  max-height: 200px;
+  margin-top: 20px;
+}
+
+.create-note-page form .actions {
+  margin: 40px auto 0;
+  text-align: center;
+}

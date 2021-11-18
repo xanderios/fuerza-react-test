@@ -27,8 +27,8 @@ The user of this react application should be able to create an account, login an
 7. List notes.
 8. List the note content.
 
-
 ## Layout
+
 [Figma Link](https://www.figma.com/file/xFIfu4rDvvxZUpwZUIh2EM/Teste?node-id=0%3A1)
 
 ## API Usage
@@ -48,11 +48,11 @@ API can be launched using npm start. You will need to run npm install once you s
 - post => '/auth/login', user.login'
 - post => '/auth/signup', user.signup'
 
-- get => '/journal/entries/:id', journal.getEntries'
-- get => '/journal/:id', journal.getJournal'
+- get => '/journals/entries/:id', journal.getEntries'
+- get => '/journals/:id', journal.getJournal'
 
-- post => '/journal/', journal.create' _title : String_
-- post => '/journal/entry/:id', journal.addEntry' _{content,title} : Object_
+- post => '/journals/', journal.create' _title : String_
+- post => '/journals/entry/:id', journal.addEntry' _{content,title} : Object_
 
-- put => '/journal/entry/:id', journal.updateEntry' _{content,title} : Object_
-- put => '/journal/:id', journal.updateJournal' _title : String_
+- put => '/journals/entry/:id', journal.updateEntry' _{content,title} : Object_
+- put => '/journals/:id', journal.updateJournal' _title : String_

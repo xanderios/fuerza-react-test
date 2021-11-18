@@ -1,4 +1,6 @@
 @import './_auth.css';
 @import './_create-journal.css';
+@import './_create-note.css';
+@import './_entries.css';
 @import './_journals.css';
 @import './_login.css';

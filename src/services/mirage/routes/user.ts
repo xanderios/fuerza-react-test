@@ -1,13 +1,13 @@
 import { Response, Request } from 'miragejs';
 import { handleErrors } from '../server';
-import { User } from '../../../types/user';
+import { IUser } from '../../../types/user';
 import { randomBytes } from 'crypto';
 
 const generateToken = () => randomBytes(8).toString('hex');
 
 export interface AuthResponse {
   token: string;
-  user: User;
+  user: IUser;
 }
 
 const login = (schema: any, req: Request): AuthResponse | Response => {
@@ -21,7 +21,7 @@ const login = (schema: any, req: Request): AuthResponse | Response => {
   }
   const token = generateToken();
   return {
-    user: user.attrs as User,
+    user: user.attrs as IUser,
     token,
   };
 };
@@ -35,7 +35,7 @@ const signup = (schema: any, req: Request): AuthResponse | Response => {
   const user = schema.users.create(data);
   const token = generateToken();
   return {
-    user: user.attrs as User,
+    user: user.attrs as IUser,
     token,
   };
 };

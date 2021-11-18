@@ -1,0 +1,40 @@
+.notes-page .note-list {
+  display: grid;
+  grid-template: auto / 1fr 1fr;
+  gap: 30px;
+}
+
+.notes-page .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.notes-page .header .logo-wrapper {
+  margin-bottom: 0;
+}
+
+/* Notes Page - Empty */
+
+.notes-page .notes-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.notes-page .notes-empty .content {
+  text-align: center;
+}
+
+.notes-page .notes-empty .content .person {
+  width: 100%;
+  max-width: 320px;
+  margin-top: 60px;
+}
+
+.notes-page .notes-empty .content > a {
+  display: block;
+  margin-top: 80px;
+}

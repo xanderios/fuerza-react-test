@@ -1,11 +1,17 @@
 import React, { ReactElement } from 'react';
+import { IJournal } from '../types/journal';
 
-interface Props {}
+interface Props extends IJournal {}
 
-export default function JorunalCard({}: Props): ReactElement {
+export default function JournalCard({ title, type }: Props): ReactElement {
   return (
-    <div>
-      <p>Jorunal Card ID</p>
+    <div
+      className={`journal-card ${
+        type === 'public' ? 'journal-card--public' : 'journal-card--private'
+      }`}
+    >
+      <span className="journal-spine"></span>
+      <p className="journal-title centered font-serif text-2xl">{title}</p>
     </div>
   );
 }

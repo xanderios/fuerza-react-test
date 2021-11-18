@@ -1,4 +1,4 @@
-export interface Journal {
+export interface IJournal {
   id?: string;
   title: string;
   type: 'private' | 'public';

@@ -1,4 +1,4 @@
-export interface Entry {
+export interface IEntry {
   id?: string;
   title: string;
   content: string;

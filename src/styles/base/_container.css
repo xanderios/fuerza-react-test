@@ -4,12 +4,11 @@
   background-repeat: no-repeat;
   background-size: 40vh;
   background-position: left center;
-  background-color: var(--color-primary-100);
+  background-color: var(--color-primary-200);
   overflow: auto;
 }
 
 .container {
-  height: 100%;
   padding-right: 22px;
   padding-left: 22px;
   margin: auto;

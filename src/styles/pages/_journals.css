@@ -1,5 +1,21 @@
-.journals-page {
+.journals-page .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
 }
+
+.journals-page .header .logo-wrapper {
+  margin-bottom: 0;
+}
+
+.journals-page .journal-list {
+  display: grid;
+  grid-template: auto / 1fr 1fr;
+  gap: 30px;
+}
+
+/* Journals Page - Empty */
 
 .journals-page .journals-empty {
   display: flex;
@@ -8,13 +24,16 @@
   height: 100%;
 }
 
-.journals-page .journals-empty .person {
-  max-width: 320px;
-  width: 100%;
+.journals-page .journals-empty .content {
+  text-align: center;
 }
 
-.journals-page a {
+.journals-page .journals-empty .content .person {
+  width: 100%;
+  max-width: 320px;
+}
+
+.journals-page .journals-empty .content > a {
   display: block;
-  text-align: center;
-  margin: 80px auto 0;
+  margin-top: 80px;
 }

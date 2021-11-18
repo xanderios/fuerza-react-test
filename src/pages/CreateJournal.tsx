@@ -1,18 +1,23 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
-import Button from '../components/Button';
+import { useHistory } from 'react-router';
 
+import Button from '../components/Button';
 import Logo from '../components/Logo';
 import SimpleInput from '../components/SimpleInput';
+import { useAuth } from '../contexts/AuthContext';
+import { useJournals } from '../contexts/JournalsContext';
 
 export default function CreateJournal(): ReactElement {
-  const [journalTitle, setJournalTitle] = useState<string>('HTML');
+  const [journalTitle, setJournalTitle] = useState<string>('My Journal');
+  const { createJournal } = useJournals();
 
   function handleTitleInput(e: FormEvent<HTMLInputElement>) {
     setJournalTitle(e.currentTarget.value);
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>): void {
-    return;
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    createJournal(journalTitle);
   }
 
   return (
@@ -28,6 +33,7 @@ export default function CreateJournal(): ReactElement {
           value={journalTitle}
           onChange={handleTitleInput}
           placeholder="Journal title"
+          maxLength={40}
         />
         <div className="actions">
           <Button type="submit">Save journal</Button>
