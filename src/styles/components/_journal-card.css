@@ -9,15 +9,15 @@
   box-shadow: -2px -2px 2px 0px #0000001a inset;
 }
 
-.journal-card.journal-card--public {
+/* .journal-card:nth-of-type(even) {
   background: var(--color-secondary-300);
   color: var(--color-black);
-}
+} */
 
-.journal-card.journal-card--private {
+/* .journal-card:nth-of-type(odd) {
   background: var(--color-secondary-700);
   color: var(--color-white);
-}
+} */
 
 .journal-spine {
   width: 20px;

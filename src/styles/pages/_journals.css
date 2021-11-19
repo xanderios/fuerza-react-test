@@ -15,6 +15,16 @@
   gap: 30px;
 }
 
+.journals-page .journal-list > a:nth-child(even) .journal-card {
+  background: var(--color-secondary-700);
+  color: var(--color-white);
+}
+
+.journals-page .journal-list > a:nth-child(odd) .journal-card {
+  background: var(--color-secondary-300);
+  color: var(--color-black);
+}
+
 /* Journals Page - Empty */
 
 .journals-page .journals-empty {
