@@ -45,6 +45,8 @@
 }
 
 .default-page .header .return-page p {
+  font-family: var(--serif);
+  font-size: 24px;
   color: var(--color-black);
   margin-left: 12px;
 }
