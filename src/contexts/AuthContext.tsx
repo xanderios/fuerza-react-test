@@ -31,6 +31,8 @@ interface authContextData {
   user: IUser | null;
   signOut: () => void;
   withSessionAPI: () => AxiosInstance;
+  modalError: null | string;
+  changeError: (value: null | string) => void;
 }
 
 interface AuthProviderProps {
@@ -44,9 +46,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Disable for Auth development
   const [user, setUser] = useState<IUser | null>(null);
+  const [modalError, setModalError] = useState<null | string>(null);
   const history = useHistory();
 
   useEffect(() => {
+    changeError(null);
     setIsLoading(true);
     function loadUserFromCookies() {
       const token = Cookies.get('access_token');
@@ -74,27 +78,29 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function signUp(formData: AuthFormData) {
     if (formData.username === '') {
-      alert('Username is required');
+      changeError('Username is required');
       return;
     }
     if (formData.password === '') {
-      alert('Password is required');
+      changeError('Password is required');
       return;
     }
     if (formData.username.length < 2) {
-      alert('Username is required and must be at least 2 characters long');
+      changeError(
+        'Username is required and must have at least 2 characters length'
+      );
       return;
     }
     if (formData.username.length >= 20) {
-      alert('Username must be shorter than 21 characters');
+      changeError('Username must have 20 characters or less');
       return;
     }
     if (formData.password.length < 3) {
-      alert('Password must be at least 3 characters long');
+      changeError('Password must have at least 3 characters length');
       return;
     }
     if (formData.password.length > 20) {
-      alert('Password must be shorter than 4 characters long');
+      changeError('Password must have 4 characters or less');
       return;
     }
     if (
@@ -102,31 +108,34 @@ export function AuthProvider({ children }: AuthProviderProps) {
       formData.email.length > 8 &&
       formData.email.length < 40
     ) {
-      alert('Email must be shorter than 40 characters');
+      changeError('Email must have 40 characters or less');
       return;
     }
 
+    changeError(null);
     await api
       .post('/auth/signup', formData)
       .then(() => {
+        changeError(null);
         history.push('/login');
       })
       .catch((err) => {
+        changeError('An error ocurred. Please try again');
         console.log(err);
-        return err;
       });
   }
 
   async function signIn(formData: AuthFormData) {
     if (formData.username.length <= 0) {
-      alert('Username is required');
+      changeError('Username is required');
       return;
     }
     if (formData.password.length <= 0) {
-      alert('Password is required');
+      changeError('Password is required');
       return;
     }
 
+    changeError(null);
     setIsLoading(true);
     deleteCookies();
 
@@ -139,10 +148,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
         api.defaults.headers['Authorization'] = `Bearer ${token}`;
       }
       setIsLoading(false);
+      changeError(null);
       history.push(`/journals`);
     } catch (err) {
       setIsLoading(false);
-      alert('Invalid username or password, please try again');
+      changeError('Invalid username or password, please try again');
       return;
     }
   }
@@ -151,6 +161,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     deleteCookies();
     setIsAuthenticated(false);
     history.push('/login');
+  }
+
+  function changeError(value: null | string) {
+    setModalError(value);
   }
 
   return (
@@ -163,6 +177,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         user,
         signOut,
         withSessionAPI,
+        modalError,
+        changeError,
       }}
     >
       {children}

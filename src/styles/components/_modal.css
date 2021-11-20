@@ -1,0 +1,77 @@
+:root {
+  --color-red-200: #fecaca;
+  --color-red-500: #ef4444;
+}
+
+.modal {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  box-shadow: 0 2px 4px rgba(0 0 0 / 15%);
+  transition: ease-in 0.1s;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal .backdrop {
+  height: 100%;
+  width: 100%;
+  background: #000;
+  opacity: 0.6;
+}
+
+.modal .modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 32px);
+  max-width: 400px;
+  min-height: 160px;
+  border-radius: 8px;
+  background: var(--color-primary-100);
+  box-shadow: 0 6px 16px rgba(0 0 0 / 15%);
+  border: 1px solid var(--color-primary-500);
+}
+
+.modal .modal-box .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-primary-500);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-color: var(--color-primary-500);
+  padding: 16px;
+}
+
+.modal .modal-box .header .title {
+  font-weight: bold;
+}
+
+.modal .modal-box .header .close-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.modal .modal-box .message {
+  padding: 16px;
+  font-weight: bold;
+  color: var(--color-red-500);
+}

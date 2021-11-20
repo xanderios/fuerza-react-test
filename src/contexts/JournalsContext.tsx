@@ -14,6 +14,8 @@ interface journalsContextData {
   fetchJournal: (journalId: string) => void;
   fetchNotes: (journalId: string) => void;
   createNote: (journalId: string, title: string, content: string) => void;
+  modalError: null | string;
+  changeError: (value: null | string) => void;
 }
 
 interface JournalsProviderProps {
@@ -29,6 +31,7 @@ export function JournalsProvider({ children }: JournalsProviderProps) {
   const [journals, setJournals] = useState<null | IJournal[]>(null);
   const [journal, setJournal] = useState<null | IJournal>(null);
   const [notes, setNotes] = useState<null | IEntry[]>(null);
+  const [modalError, setModalError] = useState<null | string>(null);
 
   async function fetchJournals() {
     const response: any = await withSessionAPI().get(`/journals/${user?.id}`);
@@ -39,24 +42,26 @@ export function JournalsProvider({ children }: JournalsProviderProps) {
 
   async function createJournal(journalTitle: string) {
     if (journalTitle.length > 20) {
-      alert('Journal title must be 20 characters or shorter');
+      changeError('Journal title must have 20 characters or less');
       return;
     }
     if (journalTitle.length <= 0) {
-      alert('Journal title must be at least 1 character length');
+      changeError('Journal title must have at least 1 character length');
       return;
     }
 
+    changeError(null);
     await withSessionAPI()
       .post('/journals', {
         title: journalTitle,
         userId: user.id,
       })
       .then(() => {
+        changeError(null);
         history.push('/journals');
       })
       .catch((err) => {
-        alert('There was an error with your submission');
+        changeError('There was an error with your submission');
         console.log(err);
         return;
       });
@@ -66,6 +71,7 @@ export function JournalsProvider({ children }: JournalsProviderProps) {
     await withSessionAPI()
       .get(`/journals/${user.id}`)
       .then((res: any) => {
+        console.log(res.journals);
         const journalData = res.journals.find(
           (journal: IEntry) => journal.id === journalId
         );
@@ -82,35 +88,41 @@ export function JournalsProvider({ children }: JournalsProviderProps) {
 
   async function createNote(journalId: string, title: string, content: string) {
     if (title.length <= 0) {
-      alert('Note title must be at least 1 character length');
+      changeError('Note title must have at least 1 character length');
       return;
     }
     if (title.length > 20) {
-      alert('Note title must have 20 characters or less');
+      changeError('Note title must have 20 characters or less');
       return;
     }
     if (content.length <= 6) {
-      alert('Note content must be at least 7 character length');
+      changeError('Note content must have at least 7 character length');
       return;
     }
     if (content.length > 200) {
-      alert('Note content must have 200 characters or less');
+      changeError('Note content must have 200 characters or less');
       return;
     }
 
+    changeError(null);
     await withSessionAPI()
       .post(`/journals/entry/${journalId}`, {
         title,
         content,
       })
       .then(() => {
+        changeError(null);
         history.push(`/journals/entries/${journalId}`);
       })
       .catch((err) => {
-        alert('There was an error with your submission');
+        changeError('An error ocurred. Please try again');
         console.log(err);
         return;
       });
+  }
+
+  function changeError(value: null | string) {
+    setModalError(value);
   }
 
   return (
@@ -124,6 +136,8 @@ export function JournalsProvider({ children }: JournalsProviderProps) {
         fetchJournal,
         fetchNotes,
         createNote,
+        modalError,
+        changeError,
       }}
     >
       {children}

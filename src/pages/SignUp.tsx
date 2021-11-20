@@ -5,9 +5,10 @@ import { useAuth, AuthFormData } from '../contexts/AuthContext';
 import Logo from '../components/Logo';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import Modal from '../components/Modal';
 
 export default function SignUp(): ReactElement {
-  const { signUp } = useAuth();
+  const { signUp, modalError, changeError } = useAuth();
   const [formData, setFormData] = useState<AuthFormData>({
     username: '',
     password: '',
@@ -16,14 +17,17 @@ export default function SignUp(): ReactElement {
 
   function handleUsernameInput(e: FormEvent<HTMLInputElement>) {
     setFormData({ ...formData, username: e.currentTarget.value });
+    changeError(null);
   }
 
   function handlePasswordInput(e: FormEvent<HTMLInputElement>) {
     setFormData({ ...formData, password: e.currentTarget.value });
+    changeError(null);
   }
 
   function handleEmailInput(e: FormEvent<HTMLInputElement>) {
     setFormData({ ...formData, email: e.currentTarget.value });
+    changeError(null);
   }
 
   function submitHandler(e: FormEvent<HTMLFormElement>) {
@@ -33,8 +37,9 @@ export default function SignUp(): ReactElement {
 
   return (
     <div className="auth-page">
+      <Modal message={modalError} changeMessage={changeError} />
       <Logo />
-      <div>
+      <div className="content">
         <div className="header">
           <p className="title">Sign Up</p>
           <Link to="/login">Already have an account</Link>

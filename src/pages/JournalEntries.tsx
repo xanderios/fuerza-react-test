@@ -32,7 +32,7 @@ export default function JournalEntries(): ReactElement {
             <Link to="/journals">
               <div className="return-page">
                 <IconArrowLeft />
-                <p>{journal?.title}</p>
+                <p>Journals</p>
               </div>
             </Link>
             <Link to={`/create-note/${journalId}`}>

@@ -1,15 +1,17 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
 
+import { useJournals } from '../contexts/JournalsContext';
 import Button from '../components/Button';
 import Logo from '../components/Logo';
+import Modal from '../components/Modal';
 import SimpleInput from '../components/SimpleInput';
-import { useJournals } from '../contexts/JournalsContext';
 
 export default function CreateJournal(): ReactElement {
-  const [journalTitle, setJournalTitle] = useState<string>('My Journal');
-  const { createJournal } = useJournals();
+  const [journalTitle, setJournalTitle] = useState<string>('My journal');
+  const { createJournal, modalError, changeError } = useJournals();
 
   function handleTitleInput(e: FormEvent<HTMLInputElement>) {
+    changeError(null);
     setJournalTitle(e.currentTarget.value);
   }
 
@@ -20,6 +22,7 @@ export default function CreateJournal(): ReactElement {
 
   return (
     <div className="create-journal-page default-page">
+      <Modal message={modalError} changeMessage={changeError} />
       <Logo />
       <div className="cover">
         <span className="cover-spine"></span>
