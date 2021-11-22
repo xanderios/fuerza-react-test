@@ -26,7 +26,9 @@ export default function CreateJournal(): ReactElement {
       <Logo />
       <div className="cover">
         <span className="cover-spine"></span>
-        <p className="cover-title font-serif text-2xl">{journalTitle}</p>
+        <span className="cover-body">
+          <p className="cover-title font-serif text-2xl">{journalTitle}</p>
+        </span>
       </div>
       <form onSubmit={handleSubmit}>
         <SimpleInput

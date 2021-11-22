@@ -1,31 +1,23 @@
 .journal-card {
-  position: relative;
   display: flex;
   overflow: hidden;
   height: 200px;
-  background: var(--color-secondary-300);
   border-radius: 4px 16px 16px 4px;
-  /* box-shadow: inset -6px -6px 4px 0px rgb(0 0 0 / 15%); */
   box-shadow: -2px -2px 2px 0px #0000001a inset;
 }
 
-/* .journal-card:nth-of-type(even) {
-  background: var(--color-secondary-300);
-  color: var(--color-black);
-} */
-
-/* .journal-card:nth-of-type(odd) {
-  background: var(--color-secondary-700);
-  color: var(--color-white);
-} */
-
-.journal-spine {
+.journal-card .journal-spine {
   width: 20px;
   height: 100%;
-  border-radius: 4px 0px 0px 4px;
-  /* box-shadow: 0px 4px 4px 0px #00000040; */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 40%);
   background: var(--color-secondary-500);
+}
+
+.journal-card .journal-cover {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .journal-card .journal-title {

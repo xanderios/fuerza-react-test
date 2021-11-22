@@ -7,7 +7,9 @@ export default function JournalCard({ title }: Props): ReactElement {
   return (
     <div className="journal-card">
       <span className="journal-spine"></span>
-      <p className="journal-title centered font-serif text-2xl">{title}</p>
+      <span className="journal-cover">
+        <p className="journal-title font-serif text-2xl">{title}</p>
+      </span>
     </div>
   );
 }

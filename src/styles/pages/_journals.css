@@ -15,6 +15,10 @@
   gap: 30px;
 }
 
+.journal-list > a {
+  text-decoration: none;
+}
+
 .journals-page .journal-list > a:nth-child(even) .journal-card {
   background: var(--color-secondary-700);
   color: var(--color-white);

@@ -43,8 +43,8 @@ export const AuthContext = createContext({} as authContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // Disable for Auth development
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(true); // Disable for Auth development
   const [user, setUser] = useState<IUser | null>(null);
   const [modalError, setModalError] = useState<null | string>(null);
   const history = useHistory();
@@ -61,6 +61,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
     loadUserFromCookies();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      setIsAuthenticated(true);
+    }
+  }, [user]);
 
   function deleteCookies() {
     Cookies.remove('access_token');

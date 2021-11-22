@@ -1,6 +1,8 @@
 import React, { ReactElement, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext';
+import Logo from './Logo';
 
 interface Props {
   children: ReactNode;
@@ -14,6 +16,14 @@ export default function ProtectedRoute({ children }: Props): ReactElement {
   ) : !isLoading && isAuthenticated ? (
     <>{children}</>
   ) : (
-    <p>Parece que você não está logado</p>
+    <div className="default-page unlogged-page container">
+      <Logo />
+      <div className="content">
+        <p>It seems you&apos;re not logged in yet.</p>
+        <Link className="btn btn--fill" to="/login">
+          Login
+        </Link>
+      </div>
+    </div>
   );
 }
