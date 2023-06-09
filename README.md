@@ -1,5 +1,7 @@
 # Fuerza Studio (React) Coding Assessment
 
+You can check the live view of this project [here](https://xanderios-jamcity-wp.netlify.app/)!
+
 ## Overview
 
 To complete this assessment, you will need to write a simple [React](https://facebook.github.io/react/) web app, using the code from this repo as starter.
